@@ -5,15 +5,15 @@ import { useEffect } from 'react'
 import { account } from '../../Appwrite/AppWriteConfig'
 
 
-export const Dashboard=async()=>{
+export const Dashboard=()=>{
 
     useEffect(()=>{
         getSession()
     },[])
 
     async function getSession(){
-        // const session =await account.getSession('github')
-        console.log("vishal")
+        const session =await account.getSession('github')
+        console.log("session")
     }
 
     return(
