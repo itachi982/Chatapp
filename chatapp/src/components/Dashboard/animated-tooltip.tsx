@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   motion,
   useTransform,
-  AnimatePresence,
   useMotionValue,
   useSpring,
 } from "framer-motion";
@@ -13,7 +12,6 @@ export const AnimatedTooltip = ({
   items: {
     id: number;
     name: string;
-    designation: string;
     image: string;
   }[];
 }) => {
@@ -30,7 +28,7 @@ export const AnimatedTooltip = ({
     useTransform(x, [-100, 100], [-50, 50]),
     springConfig
   );
-  const handleMouseMove = (event: any) => {
+  const handleMouseMove = (event) => {
     const halfWidth = event.target.offsetWidth / 2;
     x.set(event.nativeEvent.offsetX - halfWidth); // set the x value, which is then used in transform and rotate
   };
@@ -70,7 +68,7 @@ export const AnimatedTooltip = ({
               <div className="font-bold text-white relative z-30 text-base">
                 {item.name}
               </div>
-              <div className="text-white text-xs">{item.designation}</div>
+              {/* <div className="text-white text-xs">{item.designation}</div> */}
             </motion.div>
           )}
           <img
