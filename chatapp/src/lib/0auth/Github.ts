@@ -40,18 +40,20 @@ export async function getUserDetails(){
 
    if(OauthToken.value.providerAccessToken){ 
     try{
-        const response=await axios.get("https://api.github.com/user",{
+        const response=axios.get("https://api.github.com/user",{
         headers:{
             "Accept": "application/vnd.github+json",
             "Authorization":"Bearer "+ OauthToken.value.providerAccessToken,
             "X-GitHub-Api-Version":"2022-11-28"
-        }})
+        }}).then((response)=>{
             OauthUser.value.login=response.data.login
             OauthUser.value.url=response.data.url
             OauthUser.value.avatar_url=response.data.avatar_url
             OauthUser.value.name=response.data.name
             OauthUser.value.email=response.data.email
             console.log(OauthUser.value)
+        })
+            
     }
     catch(error){
         console.log(error)
