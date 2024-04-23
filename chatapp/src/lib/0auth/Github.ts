@@ -29,14 +29,14 @@ export const Github = async() => {
 
 export async function getSession(){
     const session =await account.getSession('current')
+    console.log(session)
     OauthToken.value.provider=session.provider
     OauthToken.value.providerAccessToken=session.providerAccessToken
 }
 
 export async function getUserDetails(){
 
-    console.log("inside "+ OauthToken.value)
-//    if(OauthToken.value.providerAccessToken){ 
+   if(OauthToken.value.providerAccessToken){ 
     try{
         const response=await axios.get("https://api.github.com/user",{
         headers:{
@@ -53,8 +53,8 @@ export async function getUserDetails(){
     catch(error){
         console.log(error)
         }
-    // }
-    // else{
-    //     console.log(OauthToken.value.providerAccessToken)
-    // }
+    }
+    else{
+        console.log(OauthToken.value.providerAccessToken)
+    }
 }

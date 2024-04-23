@@ -46,9 +46,14 @@ export function DashboardComp() {
 
   useEffect(()=>{
     getSession();
-    // getUserDetails();
-    console.log(OauthToken.value.providerAccessToken)
+    setTimeout(()=>{
+      getUserDetails()
+  },1000)
+
   },[])
+
+ 
+
 
     const people = [
         {
@@ -148,7 +153,7 @@ export function DashboardComp() {
                                 <AvatarFallback>OM</AvatarFallback>
                             </Avatar>
                             <TableCell>
-                            <div className="font-medium">Liam Johnson</div>
+                            <div className="font-medium">liam</div>
                             <div className="hidden text-sm text-muted-foreground md:inline">
                                 liam@example.com
                             </div>
