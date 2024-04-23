@@ -1,6 +1,7 @@
 import { signal } from "@preact/signals-core";
 import {account} from '../../Appwrite/AppWriteConfig'
 import axios from "axios";
+import { CodeSquare } from "lucide-react";
 
 export const OauthToken=signal({
     "provider": "",
@@ -34,8 +35,8 @@ export async function getSession(){
 
 export async function getUserDetails(){
 
-
-   if(OauthToken.value.providerAccessToken){ 
+    console.log("inside "+ OauthToken)
+//    if(OauthToken.value.providerAccessToken){ 
     try{
         const response=await axios.get("https://api.github.com/user",{
         headers:{
@@ -52,8 +53,8 @@ export async function getUserDetails(){
     catch(error){
         console.log(error)
         }
-    }
-    else{
-        console.log(OauthToken.value.providerAccessToken)
-    }
+    // }
+    // else{
+    //     console.log(OauthToken.value.providerAccessToken)
+    // }
 }
