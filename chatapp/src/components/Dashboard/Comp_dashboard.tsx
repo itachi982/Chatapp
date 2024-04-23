@@ -46,7 +46,10 @@ export function DashboardComp() {
 
   useEffect(()=>{
     getSession();
-    getUserDetails()
+  },[])
+
+  useEffect(()=>{
+    getUserDetails();
   },[])
 
     const people = [
