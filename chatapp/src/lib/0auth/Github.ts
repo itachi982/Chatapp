@@ -35,6 +35,7 @@ export async function getSession(){
 export async function getUserDetails(){
 
 
+   if(OauthToken.value.providerAccessToken){ 
     try{
         const response=await axios.get("https://api.github.com/user",{
         headers:{
@@ -50,5 +51,9 @@ export async function getUserDetails(){
     }
     catch(error){
         console.log(error)
+        }
+    }
+    else{
+        console.log(OauthToken.value.providerAccessToken)
     }
 }

@@ -46,9 +46,6 @@ export function DashboardComp() {
 
   useEffect(()=>{
     getSession();
-  },[])
-
-  useEffect(()=>{
     getUserDetails();
   },[])
 
