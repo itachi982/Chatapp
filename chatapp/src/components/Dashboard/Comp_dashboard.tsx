@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { useEffect } from "react";
 import { getSession,getUserDetails } from "@/lib/0auth/Github";
 import { OauthUser,OauthToken } from "@/lib/0auth/Github";
+import {effect} from "@preact/signals-react"
 
 
 import {
@@ -44,14 +45,16 @@ import {
 
 export function DashboardComp() {
 
-  useEffect(()=>{
+
+  // setInterval(()=>{
+  //   OauthUser.value.name="chitresh"
+  //   console.log("vishal")
+  // },5000)
+
+  effect(()=>{
+    getUserDetails();
     getSession();
-    setTimeout(()=>{
-      getUserDetails()
-  },1000)
-
-  },[])
-
+  })
  
 
 
@@ -103,7 +106,9 @@ export function DashboardComp() {
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
                  <Avatar className="h-9 w-9 sm:flex">
-                    <AvatarImage src={OauthUser.value.avatar_url} alt="Avatar" />    
+                    <AvatarImage src={setTimeout(() => {
+                      OauthUser.value.avatar_url
+                    }, 500)} alt="Avatar" />    
                 </Avatar>
                 <span className="sr-only">Toggle user menu</span>
               </Button>
@@ -153,7 +158,7 @@ export function DashboardComp() {
                                 <AvatarFallback>OM</AvatarFallback>
                             </Avatar>
                             <TableCell>
-                            <div className="font-medium">liam</div>
+                            <div className="font-medium">{OauthUser.value.n}</div>
                             <div className="hidden text-sm text-muted-foreground md:inline">
                                 liam@example.com
                             </div>

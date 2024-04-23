@@ -1,7 +1,7 @@
-import { signal } from "@preact/signals-core";
+import { signal} from "@preact/signals-core";
 import {account} from '../../Appwrite/AppWriteConfig'
 import axios from "axios";
-import { CodeSquare } from "lucide-react";
+
 
 export const OauthToken=signal({
     "provider": "",
@@ -27,11 +27,13 @@ export const Github = async() => {
 
 }
 
-export async function getSession(){
-    const session =await account.getSession('current')
-    console.log(session)
-    OauthToken.value.provider=session.provider
-    OauthToken.value.providerAccessToken=session.providerAccessToken
+export function getSession(){
+    const session =account.getSession('current').then(()=>{
+        OauthToken.value.provider=session.provider
+        OauthToken.value.providerAccessToken=session.providerAccessToken
+        console.log(session)
+    })
+    
 }
 
 export async function getUserDetails(){
@@ -44,17 +46,18 @@ export async function getUserDetails(){
             "Authorization":"Bearer "+ OauthToken.value.providerAccessToken,
             "X-GitHub-Api-Version":"2022-11-28"
         }})
-        OauthUser.value.login=response.data.login
-        OauthUser.value.url=response.data.url
-        OauthUser.value.avatar_url=response.data.avatar_url
-        OauthUser.value.name=response.data.name
-        OauthUser.value.email=response.data.email
+            OauthUser.value.login=response.data.login
+            OauthUser.value.url=response.data.url
+            OauthUser.value.avatar_url=response.data.avatar_url
+            OauthUser.value.name=response.data.name
+            OauthUser.value.email=response.data.email
+            console.log(OauthUser.value)
     }
     catch(error){
         console.log(error)
         }
     }
     else{
-        console.log(OauthToken.value.providerAccessToken)
+        console.log("no vale set")
     }
 }
