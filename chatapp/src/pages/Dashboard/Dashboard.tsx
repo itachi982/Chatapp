@@ -13,7 +13,7 @@ export const Dashboard=()=>{
 
     async function getSession(){
         const session =await account.getSession('current')
-        console.log("session")
+        console.log(session)
     }
 
     return(
