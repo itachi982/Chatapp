@@ -45,7 +45,7 @@ import {
 export function DashboardComp() {
 
   useEffect(()=>{
-    
+    getSession()
     setTimeout(()=>{
       getUserDetails()
   },1000)
