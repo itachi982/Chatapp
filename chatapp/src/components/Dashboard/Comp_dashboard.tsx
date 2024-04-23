@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useEffect } from "react";
 import { getSession,getUserDetails } from "@/lib/0auth/Github";
-import { OauthUser } from "@/lib/0auth/Github";
+import { OauthUser,OauthToken } from "@/lib/0auth/Github";
 
 
 import {
@@ -46,7 +46,8 @@ export function DashboardComp() {
 
   useEffect(()=>{
     getSession();
-    getUserDetails();
+    // getUserDetails();
+    console.log(OauthToken.value.providerAccessToken)
   },[])
 
     const people = [
