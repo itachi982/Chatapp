@@ -2,9 +2,9 @@ import {Link} from "react-router-dom"
 import { AnimatedTooltip } from "./animated-tooltip"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useEffect } from "react";
-import { getSession,getUserDetails } from "@/lib/0auth/Github";
-import { OauthUser,OauthToken } from "@/lib/0auth/Github";
+import { useEffect, useState } from "react";
+import { Oauth_avatarurl, getSession,getUserDetails } from "@/lib/0auth/Github";
+import { effect } from "@preact/signals-react"
 
 
 import {
@@ -44,16 +44,22 @@ import {
 
 export function DashboardComp() {
 
-  useEffect(()=>{
+  const [avatarurl,setavatarurl]=useState("");
+
+  useEffect(() => {
     getSession()
     setTimeout(()=>{
       getUserDetails()
   },1000)
-
-  },[])
-
- 
-
+    const updateAvatarUrl = () => {
+      setavatarurl(Oauth_avatarurl.value);
+      
+    }
+    const unsub=effect(updateAvatarUrl)
+    return ()=>{
+      unsub();
+    }
+  },[]);
 
     const people = [
         {
@@ -99,11 +105,14 @@ export function DashboardComp() {
               />
             </div>
           </form>
+          
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
                  <Avatar className="h-9 w-9 sm:flex">
-                    <AvatarImage src={OauthUser.value.avatar_url} alt="Avatar" />    
+                 
+                    <AvatarImage src={avatarurl} alt="Avatar" />  
+                      
                 </Avatar>
                 <span className="sr-only">Toggle user menu</span>
               </Button>

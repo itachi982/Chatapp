@@ -3,19 +3,13 @@ import {account} from '../../Appwrite/AppWriteConfig'
 import axios from "axios";
 
 
-export const OauthToken=signal({
-    "provider": "",
-    "providerAccessToken":""
+export const Oauth_provider=signal("");
+export const Oauth_providerAccessToken=signal("");
+export const Oauth_LoginID=signal("");
+export const Oauth_avatarurl=signal("");
+export const Oauth_name=signal("");
+export const Oauth_email=signal("");
 
-})
-
-export const OauthUser=signal({
-    "login":"",
-    "url":"",
-    "avatar_url":"",
-    "name":"",
-    "email":""
-})
 
 export const Github = async() => {
     console.log('Github')
@@ -27,32 +21,32 @@ export const Github = async() => {
 
 }
 
-export function getSession(){
-    const session =account.getSession('current').then(()=>{
-        OauthToken.value.provider=session.provider
-        OauthToken.value.providerAccessToken=session.providerAccessToken
-        console.log(session)
-    })
+export async function getSession(){
+    const session =await account.getSession('current')
+    if(session){
+        Oauth_provider.value=session.provider
+        Oauth_providerAccessToken.value=session.providerAccessToken
+        console.log(Oauth_providerAccessToken.value);
+    }
     
 }
 
 export async function getUserDetails(){
-    let response;
-   if(OauthToken.value.providerAccessToken){ 
+    
+   if(Oauth_providerAccessToken){ 
     try{
-        response=axios.get("https://api.github.com/user",{
+       const response=await axios.get("https://api.github.com/user",{
         headers:{
             "Accept": "application/vnd.github+json",
-            "Authorization":"Bearer "+ OauthToken.value.providerAccessToken,
+            "Authorization":"Bearer "+ Oauth_providerAccessToken,
             "X-GitHub-Api-Version":"2022-11-28"
-        }}).then(()=>{
-            OauthUser.value.login=response.data.login
-            OauthUser.value.url=response.data.url
-            OauthUser.value.avatar_url=response.data.avatar_url
-            OauthUser.value.name=response.data.name
-            OauthUser.value.email=response.data.email
-            console.log(OauthUser.value)
-        })
+        }})
+        Oauth_avatarurl.value=response.data.avatar_url;
+        Oauth_name.value=response.data.name;
+        Oauth_email.value=response.data.email;
+        Oauth_LoginID.value=response.data.login;
+
+        console.log(Oauth_LoginID.value)
     }
     catch(error){
         console.log(error)
