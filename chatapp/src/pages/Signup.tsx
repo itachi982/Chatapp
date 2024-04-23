@@ -6,9 +6,9 @@ import { cn } from "../lib/utils";
 import { signal } from "@preact/signals-core";
 import {account}  from "../Appwrite/AppWriteConfig"
 import { v4 as uuidv4 } from 'uuid';
+import { Github } from "@/lib/0auth/Github";
 import {
   IconBrandGithub,
-  IconBrandGoogle,
 } from "@tabler/icons-react";
 import { BackgroundBeams } from "@/components/SignUp/stars";
 
@@ -82,6 +82,7 @@ export function Signup() {
 
         <div className="flex justify-center space-x-4">
           <button
+          onClick={Github}
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
           >
@@ -91,16 +92,7 @@ export function Signup() {
             </span>
             <BottomGradient />
           </button>
-          <button
-            className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-            type="submit"
-          >
-            <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-              sign up with Google
-            </span>
-            <BottomGradient />
-          </button>
+         
           
         </div>
       </form>
