@@ -3,17 +3,26 @@ import { DashboardComp } from '@/components/Dashboard/Comp_dashboard'
 import { BackgroundBeams } from '@/components/SignUp/stars'
 import { useEffect } from 'react'
 import { account } from '../../Appwrite/AppWriteConfig'
+import { signal } from "@preact/signals-core";
 
+
+export const OauthToken=signal({
+    "provider": "",
+    "providerAccessToken":""
+
+})
 
 export const Dashboard=()=>{
 
     useEffect(()=>{
         getSession()
+        console.log(OauthToken)
     },[])
 
     async function getSession(){
         const session =await account.getSession('current')
-        console.log(session)
+        OauthToken.value.provider=session.provider
+        OauthToken.value.providerAccessToken=session.providerAccessToken
     }
 
     return(
