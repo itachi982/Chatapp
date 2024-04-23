@@ -2,6 +2,11 @@ import {Link} from "react-router-dom"
 import { AnimatedTooltip } from "./animated-tooltip"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useEffect } from "react";
+import { getSession,getUserDetails } from "@/lib/0auth/Github";
+import { OauthUser } from "@/lib/0auth/Github";
+
+
 import {
   Search
  
@@ -38,6 +43,12 @@ import {
 
 
 export function DashboardComp() {
+
+  useEffect(()=>{
+    getSession();
+    getUserDetails()
+  },[])
+
     const people = [
         {
           id: 1,
@@ -86,7 +97,7 @@ export function DashboardComp() {
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
                  <Avatar className="h-9 w-9 sm:flex">
-                    <AvatarImage src="https://github.com/shadcn.png" alt="Avatar" />    
+                    <AvatarImage src={OauthUser.value.avatar_url} alt="Avatar" />    
                 </Avatar>
                 <span className="sr-only">Toggle user menu</span>
               </Button>
