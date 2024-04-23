@@ -45,8 +45,7 @@ export async function getUserDetails(){
             "Accept": "application/vnd.github+json",
             "Authorization":"Bearer "+ OauthToken.value.providerAccessToken,
             "X-GitHub-Api-Version":"2022-11-28"
-        }})
-        response.then(()=>{
+        }}).then(()=>{
             OauthUser.value.login=response.data.login
             OauthUser.value.url=response.data.url
             OauthUser.value.avatar_url=response.data.avatar_url
