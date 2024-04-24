@@ -39,7 +39,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { GetMsg, Send } from "@/lib/Messages/SendMessages";
+import { GetMsg } from "@/lib/Messages/SendMessages";
 
 
 
@@ -50,7 +50,7 @@ export function DashboardComp() {
   useEffect(() => {
     getSession()
     // Send("second msg","vishal","chitre");
-    GetMsg("vishal","chitre")
+    GetMsg("bae","vishal")
     setTimeout(()=>{
       getUserDetails()
   },1000)

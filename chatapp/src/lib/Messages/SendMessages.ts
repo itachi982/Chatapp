@@ -23,8 +23,9 @@ export const GetMsg=async (id:string,RecID:string)=>{
         import.meta.env.VITE_DATABASE_ID,
         import.meta.env.VITE_COLLECTION_MESSAGES_ID,
         [
-            // Query.select([Query.equal('SenderID',id),Query.equal('RecID',RecID)]),
+            Query.equal('SenderID', id),
             Query.equal("RecID",RecID),
+            Query.orderDesc('$createdAt'),
             Query.limit(10),
         ]
     )
