@@ -3,8 +3,8 @@ import React from "react";
 import { Label } from "../components/SignUp/label";
 import { Input } from "../components/SignUp/input";
 import { cn } from "../lib/utils";
-import { signal } from "@preact/signals-core";
-import {account}  from "../Appwrite/AppWriteConfig"
+import { formDataSignal } from "@/Signals/SignupSignal";
+import {account}  from "../Appwrite/AppwriteConfig"
 import { v4 as uuidv4 } from 'uuid';
 import { Github } from "@/lib/0auth/Github";
 import {
@@ -14,13 +14,7 @@ import { BackgroundBeams } from "@/components/SignUp/stars";
 
 export function Signup() {
 
-  const formDataSignal = signal({
-    id:"",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

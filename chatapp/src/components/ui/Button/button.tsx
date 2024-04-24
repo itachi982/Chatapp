@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import { ReloadIcon } from "@radix-ui/react-icons"
 
 import { cn } from "@/lib/utils"
 
@@ -53,4 +54,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants }
+ const ButtonLoading=(label:string)=>{
+  return (
+    <Button disabled>
+      <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+      {label}
+    </Button>
+  )
+}
+
+
+export { Button,ButtonLoading, buttonVariants }

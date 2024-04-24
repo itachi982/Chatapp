@@ -1,14 +1,8 @@
-import { signal} from "@preact/signals-core";
-import {account} from '../../Appwrite/AppWriteConfig'
+
+import {account} from '../../Appwrite/AppwriteConfig'
 import axios from "axios";
 
-
-export const Oauth_provider=signal("");
-export const Oauth_providerAccessToken=signal("");
-export const Oauth_LoginID=signal("");
-export const Oauth_avatarurl=signal("");
-export const Oauth_name=signal("");
-export const Oauth_email=signal("");
+import { Oauth_LoginID,Oauth_avatarurl,Oauth_email,Oauth_name,Oauth_provider,Oauth_providerAccessToken } from '@/Signals/OauthSignals';
 
 
 export const Github = async() => {

@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { LampContainer } from "../components/HomePage/lamp";
 import { Link } from "react-router-dom";
-import { Button } from "../components/ui/button";
+import { Button } from "../components/ui/Button/button";
 
 export function HomePage() {
   return (
