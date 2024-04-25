@@ -2,6 +2,7 @@
 import {account} from '../../Appwrite/AppwriteConfig'
 import axios from "axios";
 
+
 import { Oauth_LoginID,Oauth_avatarurl,Oauth_email,Oauth_name,Oauth_provider,Oauth_providerAccessToken } from '@/Signals/OauthSignals';
 
 
@@ -15,6 +16,12 @@ export const Github = async() => {
 
 }
 
+// export async function UpdateSession(){
+
+//     const session=await account.UpdateSession(SessionId.value)
+//     console.log("token Updated")
+// }
+
 export async function getSession(){
     const session =await account.getSession('current')
     if(session){
@@ -25,11 +32,7 @@ export async function getSession(){
     
 }
 
-export async function UpdateSession(){
 
-    const session=await account.UpdateSession
-
-}
 
 export async function getUserDetails(){
     

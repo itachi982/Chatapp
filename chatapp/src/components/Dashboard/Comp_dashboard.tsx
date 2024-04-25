@@ -58,25 +58,30 @@ export function DashboardComp() {
   const [avatarurl, setAvatarUrl] = useState("");
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState<User[]>([]);
+  const [Session, setSession] = useState({});
+
   
-  
-  function handleSearch() {
-    setTimeout(() => {
-      SearchUser(search);
-    }, 500);
-  }
+ 
 
   const getUserOnLoad=async ()=>{
 
     const user=await account.get();
-    HandleUser.value=user;
-    console.log(HandleUser.value)
+    setSession(user);
+    console.log(Session);
 
   }
 
- effect(()=>{
-  getUserOnLoad();
- })
+  useEffect(() => {
+    getUserOnLoad();
+  }, []);
+
+  
+
+ function handleSearch() {
+  setTimeout(() => {
+    SearchUser(search);
+  }, 500);
+}
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -207,10 +212,10 @@ export function DashboardComp() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{Session?Session.name:Session.email}</DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Logout</DropdownMenuItem>
           </DropdownMenuContent>
