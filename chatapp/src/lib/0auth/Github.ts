@@ -18,11 +18,17 @@ export const Github = async() => {
 export async function getSession(){
     const session =await account.getSession('current')
     if(session){
+        console.log(session);
         Oauth_provider.value=session.provider
         Oauth_providerAccessToken.value=session.providerAccessToken
-        console.log(Oauth_providerAccessToken.value);
     }
     
+}
+
+export async function UpdateSession(){
+
+    const session=await account.UpdateSession
+
 }
 
 export async function getUserDetails(){

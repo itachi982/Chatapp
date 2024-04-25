@@ -1,6 +1,7 @@
 
 import { Query } from "appwrite";
-import {databases,ID} from "../../Appwrite/AppwriteConfig"
+import {databases,ID} from "../../../Appwrite/AppwriteConfig"
+
 
 export const Send=async(Content:string,id:string,Recid:string)=>{
     console.log(Date.now());

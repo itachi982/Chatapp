@@ -38,10 +38,10 @@ export function Signup() {
          <div>
          <BackgroundBeams/>
          </div>
-        <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-neutral-950 dark:bg-black">
-      <h2 className="font-bold text-xl text-neutral-200 dark:text-neutral-200">
-        Welcome to Vishal's Chat App
-      </h2>
+        <div className=" max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 bg-neutral-900 dark:bg-black ">
+          <h2 className="font-bold text-xl text-neutral-200 dark:text-neutral-200">
+            Welcome to Vishal's Chat App
+          </h2>
     
       <form className="my-8" onSubmit={handleSubmit}>
         <div className=" relative flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
